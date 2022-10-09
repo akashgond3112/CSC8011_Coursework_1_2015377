@@ -1,2 +1,4 @@
-package csc8011;public class Museum {
+package csc8011;
+
+public class Museum {
 }
