@@ -10,9 +10,14 @@ public class Main {
 
         Scanner sc=new Scanner(System.in);
         System.out.println("Enter the name of the museum");
-//        String museumName = sc.nextLine();
-        MuseumIO museumIO =new MuseumIO("museumName");
-        museumIO.readCsv();
+        String museumName = sc.nextLine();
+        if(museumName.equalsIgnoreCase("Vintage computer museum")){
+            MuseumIO museumIO =new MuseumIO(museumName);
+            museumIO.readCsv();
+        }else{
+            System.out.println("We cannot find the Museum with the name : " +museumName);
+        }
+
 
 
     }

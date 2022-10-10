@@ -6,6 +6,8 @@ public class Exhibit {
     int yearAcquired;
     double value;
 
+    public Exhibit() {}
+
     Exhibit(String exhibitId,String description,int yearAcquired, double value){
         this.exhibitId=exhibitId;
         this.description=description;
@@ -13,6 +15,8 @@ public class Exhibit {
         this.value=value;
 
     }
+
+
 
     public String getExhibitId() {
         return exhibitId;
