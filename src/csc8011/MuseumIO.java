@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class MuseumIO {
 
-    String museumName;
+    private String museumName;
 
     public MuseumIO ( String museumName ) {
         this.museumName = museumName;
@@ -79,53 +79,6 @@ public class MuseumIO {
                 System.out.println ( fileNotFoundException.getMessage ( ) );
             }
         }
-    }
-
-    /**
-     * @param exhibitId
-     * @return This method will return list of a exhibitsId's.
-     */
-    public ArrayList < String > creatListOfExhibitIds ( String exhibitId ) {
-        if (exhibitId==null) return null;
-        ArrayList < String > exhibitIds = new ArrayList < String > ( );
-        exhibitIds.add ( exhibitId );
-        return exhibitIds;
-    }
-
-    /**
-     * @param description
-     * @return
-     */
-    public ArrayList < String > creatListOfExhibitDescriptions ( String description ) {
-        if (description==null) return null;
-
-        ArrayList < String > exhibitDescriptions = new ArrayList < String > ( );
-        exhibitDescriptions.add ( description );
-        return exhibitDescriptions;
-    }
-
-    /**
-     * @param exhibitYear
-     * @return
-     */
-    public ArrayList < Integer > creatListOfExhibitYears ( Integer exhibitYear ) {
-        if (exhibitYear==null) return null;
-
-        ArrayList < Integer > exhibitYears = new ArrayList < Integer > ( );
-        exhibitYears.add ( exhibitYear );
-        return exhibitYears;
-    }
-
-    /**
-     * @param exhibitValue
-     * @return
-     */
-    public ArrayList < Double > creatListOfExhibitValues ( Double exhibitValue ) {
-        if (exhibitValue==null) return null;
-
-        ArrayList < Double > exhibitValues = new ArrayList < Double > ( );
-        exhibitValues.add ( exhibitValue );
-        return exhibitValues;
     }
 
 }
