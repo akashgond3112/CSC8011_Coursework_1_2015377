@@ -72,6 +72,9 @@ public class Museum {
         this.museumName = museumName;
     }
 
+    /**
+     *
+     */
     public void getHighestValueOfTheExhibit(){
         // Create maxValue variable and initialize with 0
         double maxValue = 0;
@@ -91,6 +94,9 @@ public class Museum {
         System.out.println("Highest value exhibit: "+tmpDescription+"("+tmpExhibitId+"),£" + maxValue);
     }
 
+    /**
+     *
+     */
     public void getFirstExhibitAcquired(){
         // initialize the min to some maximum value
         Integer min = Integer.MAX_VALUE;
@@ -111,5 +117,21 @@ public class Museum {
         }
 
         System.out.println("First exhibit acquired:"+ tmpDescription +" (acquired "+min+")");
+    }
+
+    /**
+     *
+     */
+    public void getAverageValueOfAllExhibits(){
+
+        double totalSum=0, average;
+
+        for(int z=0;z< exhibitValues.size (); z++){
+            totalSum = totalSum+exhibitValues.get ( z );
+        }
+
+        average = totalSum/exhibitValues.size ();
+
+        System.out.println ("Average value of exhibits: £"+ average );
     }
 }

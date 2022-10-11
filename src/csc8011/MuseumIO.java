@@ -70,6 +70,9 @@ public class MuseumIO {
                 //Print first exhibit acquired and average value of exhibits in the museum's collection
                 museum1.getFirstExhibitAcquired();
 
+                //Print average value of all exhibits.
+                museum1.getAverageValueOfAllExhibits();
+
                 readCsv.close ( ); // closing the Scanner class
 
             } catch ( FileNotFoundException fileNotFoundException ) {

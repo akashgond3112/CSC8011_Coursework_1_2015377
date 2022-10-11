@@ -15,7 +15,7 @@ public class Main {
             MuseumIO museumIO =new MuseumIO(museumName);
             museumIO.readCsv();
         }else{
-            System.out.println("We cannot find the Museum with the name : " +museumName);
+            System.out.println("Sorry!, We cannot find the Museum with the name : " +museumName);
         }
 
 
