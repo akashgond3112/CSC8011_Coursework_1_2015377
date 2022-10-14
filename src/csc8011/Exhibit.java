@@ -1,19 +1,33 @@
 package csc8011;
 
+import java.util.ArrayList;
+
 public class Exhibit {
     String exhibitId;
     String description;
     int yearAcquired;
     double value;
 
-    public Exhibit() {}
+    public ArrayList<Exhibit> getExhibits() {
+        return exhibits;
+    }
+
+    public void setExhibits(ArrayList<Exhibit> exhibits) {
+        this.exhibits = exhibits;
+    }
+
+    private ArrayList <Exhibit> exhibits = new ArrayList<Exhibit>();
+
+
+    public Exhibit(ArrayList <Exhibit> exhibits) {
+        setExhibits ( exhibits );
+    }
 
     Exhibit(String exhibitId,String description,int yearAcquired, double value){
-        this.exhibitId=exhibitId;
-        this.description=description;
-        this.yearAcquired=yearAcquired;
-        this.value=value;
-
+        setExhibitId ( exhibitId );
+        setDescription ( description );
+        setYearAcquired ( yearAcquired );
+        setValue ( value );
     }
 
 
@@ -48,5 +62,14 @@ public class Exhibit {
 
     public void setValue(double value) {
         this.value = value;
+    }
+
+    public void getExhibitsSummary(){
+        /*We will loop through each Exhibit object from the list and print the data
+                by calling the getter method from the Exhibit Class*/
+        for ( Exhibit exhibit : exhibits ) {
+            System.out.println ( "Exhibit Id: " + exhibit.getExhibitId ( ) + " Description: " + exhibit.getDescription ( ) + " Year acquired: "
+                    + exhibit.getYearAcquired ( ) + " Value: " + exhibit.getValue ( ) );
+        }
     }
 }

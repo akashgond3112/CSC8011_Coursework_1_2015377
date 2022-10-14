@@ -9,19 +9,17 @@ public class Museum {
     private ArrayList<String> exhibitDescriptions = new ArrayList<String>();
     private ArrayList<Double> exhibitValues= new ArrayList<Double>();
     private ArrayList<Integer> exhibitYears= new ArrayList<Integer>();
-    private ArrayList<Exhibit> exhibits = new ArrayList<Exhibit>();
 
 
     Museum(String museumName){
         this.setMuseumName(museumName);
     }
 
-    Museum(ArrayList<String> exhibitIds, ArrayList<String> exhibitDescriptions,ArrayList<Integer> exhibitYears,ArrayList<Double> exhibitValues, ArrayList<Exhibit> exhibits){
+    Museum(ArrayList<String> exhibitIds, ArrayList<String> exhibitDescriptions,ArrayList<Integer> exhibitYears,ArrayList<Double> exhibitValues){
         this.setExhibitIds(exhibitIds);
         this.setExhibitDescriptions (exhibitDescriptions);
         this.setExhibitValues(exhibitValues);
         this.setExhibitYears(exhibitYears);
-        this.setExhibits ( exhibits );
     }
 
     public ArrayList<Double> getExhibitValues() {
@@ -54,14 +52,6 @@ public class Museum {
 
     public void setExhibitDescriptions ( ArrayList<String> exhibitDescriptions ) {
         this.exhibitDescriptions = exhibitDescriptions;
-    }
-
-    public ArrayList<Exhibit> getExhibits() {
-        return exhibits;
-    }
-
-    public void setExhibits(ArrayList<Exhibit> exhibits) {
-        this.exhibits = exhibits;
     }
 
     public String getMuseumName() {
@@ -133,5 +123,17 @@ public class Museum {
         average = totalSum/exhibitValues.size ();
 
         System.out.println ("Average value of exhibits: £"+ average );
+    }
+
+    public void showStatistic(){
+
+        //Print statistics on exhibits, showing the full details of exhibit with the highest value
+        getHighestValueOfTheExhibit();
+
+        //Print first exhibit acquired and average value of exhibits in the museum's collection
+        getFirstExhibitAcquired();
+
+        //Print average value of all exhibits.
+        getAverageValueOfAllExhibits();
     }
 }
