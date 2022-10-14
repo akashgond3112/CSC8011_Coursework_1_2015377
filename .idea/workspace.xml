@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6e102dd-edca-47db-8660-eb7941f7aa46" name="Changes" comment="remove unused method">
+    <list default="true" id="d6e102dd-edca-47db-8660-eb7941f7aa46" name="Changes" comment="update IO class to have menu options">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/csc8011/Exhibit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/csc8011/Exhibit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/csc8011/Museum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/csc8011/Museum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/csc8011/MuseumIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/csc8011/MuseumIO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,7 +86,7 @@
       <workItem from="1665426219074" duration="9002000" />
       <workItem from="1665477244636" duration="1248000" />
       <workItem from="1665511910843" duration="1586000" />
-      <workItem from="1665750403170" duration="6302000" />
+      <workItem from="1665750403170" duration="7580000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1665352762646</created>
@@ -119,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665512105556</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update IO class to have menu options">
+      <created>1665756855640</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1665756855640</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,65 +145,71 @@
     <MESSAGE value="created method for getting the highest value and first exhibit acquired." />
     <MESSAGE value="created method for getting the Average Value Of AllExhibits." />
     <MESSAGE value="remove unused method" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove unused method" />
+    <MESSAGE value="update IO class to have menu options" />
+    <option name="LAST_COMMIT_MESSAGE" value="update IO class to have menu options" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>94</line>
+          <line>123</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>97</line>
+          <line>126</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>100</line>
+          <line>129</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>101</line>
+          <line>130</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>104</line>
+          <line>133</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>105</line>
+          <line>134</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>108</line>
+          <line>137</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>92</line>
+          <line>121</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>74</line>
+          <line>101</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>76</line>
+          <line>103</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
-          <line>79</line>
+          <line>106</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/csc8011/MuseumIO.java</url>
+          <line>102</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -8,17 +8,23 @@ import java.util.Scanner;
 
 public class MuseumIO {
 
-    boolean showMenuFlag =true;
+    private Scanner sc=new Scanner(System.in); // Initialized the Scanner object
+    boolean showMenuFlag =true; // boolean flag, by default set to true. To show menu every time to user.
     private final String option_1= "1 : Enter the name of the museum";
     private final String option_2= "2: Read in information on the exhibits from a .csv file in the current directory called exhibits.csv. See below for a specification of this file.";
     private final String option_3= "3: Print a summary of the museum name followed by a list of all exhibits, their value and the year acquired.";
     private final String option_4= "4: Print statistics on exhibits, showing the full details of exhibit with the highest value, first exhibit acquired and average value of exhibits in the museum's collection, to the console";
     private final String option_5= "5: Exit the menu options";
-    ArrayList < Exhibit > exhibits = new ArrayList < Exhibit > ( );
-    ArrayList < String > exhibitIds = new ArrayList < String > ( );
-    ArrayList < String > exhibitDescriptions = new ArrayList < String > ( );
-    ArrayList < Integer > exhibitYears = new ArrayList < Integer > ( );
-    ArrayList < Double > exhibitValues = new ArrayList < Double > ( );
+    ArrayList < Exhibit > exhibits = new ArrayList < Exhibit > ( ); // Initialized the empty list of Exhibit type
+    ArrayList < String > exhibitIds = new ArrayList < String > ( ); // Initialized the empty list of String type
+    ArrayList < String > exhibitDescriptions = new ArrayList < String > ( ); // Initialized the empty list of String type
+    ArrayList < Integer > exhibitYears = new ArrayList < Integer > ( ); // Initialized the empty list of Integer type
+    ArrayList < Double > exhibitValues = new ArrayList < Double > ( );// Initialized the empty list of Double type
+
+
+    /*
+    * Below methods are the getter methods for all the variable of menu option's
+    */
 
     public String getOption_1 ( ) {
         return option_1;
@@ -39,6 +45,11 @@ public class MuseumIO {
         return option_5;
     }
 
+    /**
+     * In this method we are using the Scanner class , in order to read the csv file.
+     * and looping through each row from the csv file and storing the data as an object
+     * and list of data.
+     */
     public void readCsv ( ) {
         try {
             Scanner readCsv = new Scanner ( new File ( "src/data/exhibits.csv" ) );
@@ -46,32 +57,48 @@ public class MuseumIO {
                 String line = readCsv.nextLine ( );
                 String[] lineArray = line.split ( "," ); // split the sentences using String split inbuilt method.
 
+                // adding the Exhibit object to the list of the exhibits.
                 exhibits.add(new Exhibit(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), Double.parseDouble(lineArray[3])));
 
+                // creating a list of all the exhibit Id's
                 exhibitIds.add ( lineArray[ 0 ]);
+
+                // creating a list of all the exhibits description
                 exhibitDescriptions.add (  lineArray[ 1 ]);
+
+                // creating a list of all the exhibit Years
                 exhibitYears.add (Integer.parseInt ( lineArray[ 2 ] )  );
+
+                // creating a list of all the exhibits Values
                 exhibitValues.add ( Double.parseDouble ( lineArray[ 3 ] ) );
             }
 
             readCsv.close ( ); // closing the Scanner class
 
         } catch ( FileNotFoundException fileNotFoundException ) {
-            System.out.println ( fileNotFoundException.getMessage ( ) );
+            System.out.println ( fileNotFoundException.getMessage ( ) ); // catching the exception .
         }
     }
 
+    /**
+     * This method behaviour is to show the list of the menu option available.
+     */
     public void showMenu(){
         System.out.println ("Menu : " );
-        System.out.println ("Please select any menu option from the list" );
+        System.out.println ("Please select any menu option from the below list" );
         System.out.println (getOption_1 () );
         System.out.println (getOption_2 () );
         System.out.println (getOption_3 () );
         System.out.println (getOption_4 () );
-        System.out.println (getOption_5 () +"\n");
+        System.out.println (getOption_5 () +"\n"); // after option 5 point the cursor to the next line
     }
 
-    public void museumNameInput(Scanner sc){
+    /**
+     * Method which respond to user input for menu option_1 and
+     * check entered museum is correct or not. If not notify the user
+     * by an appropriate message.
+     */
+    public void museumNameInput(){
         String museumName = sc.nextLine ();
         if(museumName.equalsIgnoreCase ( "Vintage computer museum" )){
             Museum museum = new Museum ( museumName );
@@ -83,16 +110,18 @@ public class MuseumIO {
 
     public static void main(String[] args) {
 
-        MuseumIO museumIO =new MuseumIO();
+        MuseumIO museumIO =new MuseumIO(); // creates an object MuseumIO class.
 
+        // Entry point : will check is @showMenuFlag is true, If yes, continue the loop.
         while ( museumIO.showMenuFlag ){
             museumIO.showMenu ();
-            Scanner sc=new Scanner(System.in);
+
             try{
-                int menuOption = sc.nextInt ();
+                int menuOption = museumIO.sc.nextInt (); // User input option
+
                 switch (menuOption) {
                     case 1:
-                        museumIO.museumNameInput (sc);
+                        museumIO.museumNameInput ();
                         break;
                     case 2:
                         museumIO.readCsv ();
@@ -106,7 +135,7 @@ public class MuseumIO {
                         museum.showStatistic ();
                         break;
                     case 5:
-                        museumIO.showMenuFlag =false;
+                        museumIO.showMenuFlag =false; // will set the flag to false and exit the code.
                         System.out.println("Thank You");
                         break;
                 }
