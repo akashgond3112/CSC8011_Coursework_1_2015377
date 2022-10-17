@@ -8,13 +8,10 @@ import java.util.Scanner;
 
 public class MuseumIO {
 
-    private Scanner sc=new Scanner(System.in); // Initialized the Scanner object
+     // Initialized the Scanner object
     boolean showMenuFlag =true; // boolean flag, by default set to true. To show menu every time to user.
-    private final String option_1= "1 : Enter the name of the museum";
-    private final String option_2= "2: Read in information on the exhibits from a .csv file in the current directory called exhibits.csv. See below for a specification of this file.";
-    private final String option_3= "3: Print a summary of the museum name followed by a list of all exhibits, their value and the year acquired.";
-    private final String option_4= "4: Print statistics on exhibits, showing the full details of exhibit with the highest value, first exhibit acquired and average value of exhibits in the museum's collection, to the console";
-    private final String option_5= "5: Exit the menu options";
+
+    String museumName; // Initialize a variable for museum name .
     ArrayList < Exhibit > exhibits = new ArrayList < Exhibit > ( ); // Initialized the empty list of Exhibit type
     ArrayList < String > exhibitIds = new ArrayList < String > ( ); // Initialized the empty list of String type
     ArrayList < String > exhibitDescriptions = new ArrayList < String > ( ); // Initialized the empty list of String type
@@ -27,22 +24,24 @@ public class MuseumIO {
     */
 
     public String getOption_1 ( ) {
-        return option_1;
+        return "1 : Enter the name of the museum";
     }
 
     public String getOption_2 ( ) {
-        return option_2;
+        return "2: Read in information on the exhibits from a .csv file in the current directory called exhibits.csv. " +
+                "See below for a specification of this file.";
     }
 
     public String getOption_3 ( ) {
-        return option_3;
+        return "3: Print a summary of the museum name followed by a list of all exhibits, their value and the year acquired.";
     }
 
     public String getOption_4 ( ) {
-        return option_4;
+        return "4: Print statistics on exhibits, showing the full details of exhibit with the highest value, " +
+                "first exhibit acquired and average value of exhibits in the museum's collection, to the console";
     }
     public String getOption_5 ( ) {
-        return option_5;
+        return "5: Exit the menu options";
     }
 
     /**
@@ -90,21 +89,21 @@ public class MuseumIO {
         System.out.println (getOption_2 () );
         System.out.println (getOption_3 () );
         System.out.println (getOption_4 () );
-        System.out.println (getOption_5 () +"\n"); // after option 5 point the cursor to the next line
+        System.out.println (getOption_5 () ); // after option 5 point the cursor to the next line
     }
 
     /**
      * Method which respond to user input for menu option_1 and
-     * check entered museum is correct or not. If not notify the user
+     * check entered museum is empty or not and notify the user
      * by an appropriate message.
      */
     public void museumNameInput(){
-        String museumName = sc.nextLine ();
-        if(museumName.equalsIgnoreCase ( "Vintage computer museum" )){
-            Museum museum = new Museum ( museumName );
-            System.out.println ("Museum name: " + museum.getMuseumName () );
-        }else{
-            System.out.println ("Entered museum name doesn't match the data." + "\n" + "Please Try again!" );
+        Scanner sc=new Scanner(System.in); // Created an object for scanner class.
+        System.out.println("Please enter the museum name below and press enter! ");
+        museumName = sc.nextLine (); // take the input from the user as String
+        // check if entered museum name is not empty and is not blank
+        if(museumName.isBlank() && museumName.isEmpty()) {
+            System.out.println("Entered museum name cannot be empty." + "\n" + "Please Try again!");
         }
     }
 
@@ -117,21 +116,28 @@ public class MuseumIO {
             museumIO.showMenu ();
 
             try{
-                int menuOption = museumIO.sc.nextInt (); // User input option
+                Scanner sc=new Scanner(System.in); // Created an object for scanner class.
+                int menuOption = sc.nextInt (); // User input option as int
+                Museum museum; // Initialized Museum class
 
                 switch (menuOption) {
                     case 1:
                         museumIO.museumNameInput ();
                         break;
                     case 2:
-                        museumIO.readCsv ();
+                        museumIO.readCsv (); // call the readCsv method to parse the csv and read the details
                         break;
                     case 3:
+                        // create an object of exhibit class with the parameter as list of exhibits
                         Exhibit exhibit = new Exhibit ( museumIO.exhibits );
-                        exhibit.getExhibitsSummary ();
+                        // create an object of museum class by passing the parameter as museum name.s
+                        museum = new Museum(museumIO.museumName);
+                        // call the method get summary by passing the parameter museum name from museum class
+                        exhibit.getExhibitsSummary (museumIO.museumName);
                         break;
                     case 4:
-                        Museum museum =  new Museum ( museumIO.exhibitIds,museumIO.exhibitDescriptions,museumIO.exhibitYears, museumIO.exhibitValues);
+                        // Create an object of Museum class with all the column details of each exhibit
+                        museum = new Museum(museumIO.exhibitIds, museumIO.exhibitDescriptions, museumIO.exhibitYears, museumIO.exhibitValues);
                         museum.showStatistic ();
                         break;
                     case 5:
@@ -139,8 +145,8 @@ public class MuseumIO {
                         System.out.println("Thank You");
                         break;
                 }
-            }catch ( InputMismatchException inputMismatchException ){
-                System.out.println ("Please Try again!" );
+            }catch ( InputMismatchException inputMismatchException ){ // Handling the input mismatch exception
+                System.out.println ("Please Try again! by entering option as 1,2,3,4 or 5 to exit! " );
             }
 
         }
