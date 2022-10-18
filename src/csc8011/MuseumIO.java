@@ -128,17 +128,32 @@ public class MuseumIO {
                         museumIO.readCsv (); // call the readCsv method to parse the csv and read the details
                         break;
                     case 3:
-                        // create an object of exhibit class with the parameter as list of exhibits
-                        Exhibit exhibit = new Exhibit ( museumIO.exhibits );
-                        // create an object of museum class by passing the parameter as museum name.s
-                        museum = new Museum(museumIO.museumName);
-                        // call the method get summary by passing the parameter museum name from museum class
-                        exhibit.getExhibitsSummary (museumIO.museumName);
+                        // Check if user has entered the museum name or not also
+                        // the option 2 for read csv is selected by user or not
+                        if(museumIO.museumName !=null && museumIO.exhibits.size()>0){
+                            // create an object of exhibit class with the parameter as list of exhibits
+                            Exhibit exhibit = new Exhibit ( museumIO.exhibits );
+                            // create an object of museum class by passing the parameter as museum name.s
+                            museum = new Museum(museumIO.museumName);
+                            // call the method get summary by passing the parameter museum name from museum class
+                            exhibit.getExhibitsSummary (museumIO.museumName);
+                        }else{
+                            System.out.println("Kindly choose the option 1 and 2 to before reading the summary!");
+                        }
+
                         break;
                     case 4:
+                        // Check if user has opted for option 2 or not for read csv
+                        //if not show user a message
+                        if(museumIO.exhibitIds.size()>0 && museumIO.exhibitDescriptions.size()>0 &&museumIO.exhibitYears.size()>0
+                                && museumIO.exhibitValues.size()>0){
                         // Create an object of Museum class with all the column details of each exhibit
-                        museum = new Museum(museumIO.exhibitIds, museumIO.exhibitDescriptions, museumIO.exhibitYears, museumIO.exhibitValues);
-                        museum.showStatistic ();
+                            museum = new Museum(museumIO.exhibitIds, museumIO.exhibitDescriptions, museumIO.exhibitYears, museumIO.exhibitValues);
+                            museum.showStatistic ();
+                        }else{
+                            System.out.println("Kindly choose the 2 to before reading the statistic!");
+                        }
+
                         break;
                     case 5:
                         museumIO.showMenuFlag =false; // will set the flag to false and exit the code.
