@@ -76,7 +76,7 @@ public class Museum {
      * return exhibit with the highest value out of all the exhibits
      */
     public Exhibit getHighestValueOfTheExhibit(){
-        // Create maxValue variable and initialize with 0
+        // in order to compare the value within the exhibits lists, get the first exhibits from list
         Exhibit tmpExhibit = exhibits.get(0);
 
         // Check maximum element using for loop
@@ -94,7 +94,8 @@ public class Museum {
     public Exhibit getFirstExhibitAcquired(){
         // initialize the min to some maximum value
         int min = Integer.MAX_VALUE;
-        Exhibit tmpExhibit = null;
+        Exhibit tmpExhibit = null; // initialize an empty exhibit.
+
         /* now we have to loop through every data in the exhibits list and
         compare the min value found so far with current value*/
         for ( Exhibit exhibit : exhibits) {
