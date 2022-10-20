@@ -77,16 +77,15 @@ public class Museum {
      */
     public Exhibit getHighestValueOfTheExhibit(){
         // Create maxValue variable and initialize with 0
-        double maxValue = 0;
+        Exhibit tmpExhibit = exhibits.get(0);
 
         // Check maximum element using for loop
         for ( Exhibit exhibit : exhibits) {
-            if (exhibit.getValue() > maxValue){
-                maxValue = exhibit.getValue();
-                return exhibit;
+            if (exhibit.getValue() > tmpExhibit.getValue()){
+                tmpExhibit= exhibit;
             }
         }
-        return null;
+        return tmpExhibit;
     }
 
     /**
@@ -95,17 +94,17 @@ public class Museum {
     public Exhibit getFirstExhibitAcquired(){
         // initialize the min to some maximum value
         int min = Integer.MAX_VALUE;
-
+        Exhibit tmpExhibit = null;
         /* now we have to loop through every data in the exhibits list and
         compare the min value found so far with current value*/
         for ( Exhibit exhibit : exhibits) {
             //check if the min value is greater than the current value
             if (min > exhibit.getYearAcquired()){
                 min = exhibit.getYearAcquired(); // set min value equals current value
-                return exhibit;
+                tmpExhibit= exhibit;
             }
         }
-        return null;
+        return tmpExhibit;
     }
 
     /**
