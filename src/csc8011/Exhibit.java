@@ -1,7 +1,5 @@
 package csc8011;
 
-import java.util.ArrayList;
-
 public class Exhibit {
 
     // Initialized the private variable , which will be only accessible using getter and setter method
@@ -9,21 +7,11 @@ public class Exhibit {
     private String description;
     private int yearAcquired;
     private double value;
-    private ArrayList <Exhibit> exhibits = new ArrayList<Exhibit>();
-
 
     /**
-     * @param exhibits
-     * constructor which accept list of exhibits as a parameter.
-     */
-    Exhibit(ArrayList <Exhibit> exhibits) {
-        setExhibits ( exhibits );
-    }
-
-    /**
-     * @param exhibitId
-     * @param description
-     * @param yearAcquired
+     * @param exhibitId museumID
+     * @param description museumDescription
+     * @param yearAcquired museum Year acquired
      * @param value
      * parameterised constructor which accept the above listed params.
      */
@@ -48,7 +36,11 @@ public class Exhibit {
      * @param exhibitId  set the values.
      */
     public void setExhibitId(String exhibitId) {
-        this.exhibitId = exhibitId;
+        if(exhibitId.contains(",")){
+            throw new RuntimeException("ExhibitId should not contains (,). Please check your CSV file!");
+        }else{
+            this.exhibitId = exhibitId;
+        }
     }
 
     public String getDescription() {
@@ -75,35 +67,4 @@ public class Exhibit {
         this.value = value;
     }
 
-    /**
-     * @return list of Exhibits object
-     */
-    public ArrayList<Exhibit> getExhibits() {
-        return exhibits;
-    }
-
-    /**
-     * @param exhibits used to set the variable.
-     */
-    public void setExhibits(ArrayList<Exhibit> exhibits) {
-        this.exhibits = exhibits;
-    }
-
-    /**
-
-     * @param museumName
-     * This method is used to Print a summary of the museum name followed by a list of all exhibits,
-     * their value and the year acquired to the console.
-     */
-    public void getExhibitsSummary(String museumName){
-
-        System.out.println("Museum name : "+museumName); // call the getMuseumName method to get the name of the museum
-        /*We will loop through each Exhibit object from the list and print the data
-                by calling the getter method from the Exhibit Class*/
-        for ( Exhibit exhibit : exhibits ) {
-            // We will loop through each Exhibit object and call the getter method to get the details and print them one by one.
-            System.out.println ( "Exhibit Id: " + exhibit.getExhibitId ( ) + " Description: " + exhibit.getDescription ( ) + " Year acquired: "
-                    + exhibit.getYearAcquired ( ) + " Value: " + exhibit.getValue ( ) );
-        }
-    }
 }

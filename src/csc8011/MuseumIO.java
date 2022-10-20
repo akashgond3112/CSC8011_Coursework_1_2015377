@@ -2,27 +2,16 @@ package csc8011;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MuseumIO {
-
-     // Initialized the Scanner object
-    boolean showMenuFlag =true; // boolean flag, by default set to true. To show menu every time to user.
-
-    String museumName; // Initialize a variable for museum name .
-    ArrayList < Exhibit > exhibits = new ArrayList < Exhibit > ( ); // Initialized the empty list of Exhibit type
-    ArrayList < String > exhibitIds = new ArrayList < String > ( ); // Initialized the empty list of String type
-    ArrayList < String > exhibitDescriptions = new ArrayList < String > ( ); // Initialized the empty list of String type
-    ArrayList < Integer > exhibitYears = new ArrayList < Integer > ( ); // Initialized the empty list of Integer type
-    ArrayList < Double > exhibitValues = new ArrayList < Double > ( );// Initialized the empty list of Double type
-
+    static boolean showMenuFlag =true; // static boolean flag, by default set to true. To show menu every time to user.
+    static Museum museum = new Museum(); // Initialize a static variable for museum name .
 
     /*
     * Below methods are the getter methods for all the variable of menu option's
     */
-
     public String getOption_1 ( ) {
         return "1 : Enter the name of the museum";
     }
@@ -46,32 +35,26 @@ public class MuseumIO {
 
     /**
      * In this method we are using the Scanner class , in order to read the csv file.
-     * and looping through each row from the csv file and storing the data as an object
-     * and list of data.
+     * and looping through each row from the csv file and creating an exhibit object
+     * and adding it to the museum exhibits list
      */
-    public void readCsv ( ) {
+    public static void readCsv ( ) {
         try {
             Scanner readCsv = new Scanner ( new File ( "src/data/exhibits.csv" ) );
+            readCsv.nextLine ( ); //always skip first line
             while ( readCsv.hasNextLine ( ) ) {
                 String line = readCsv.nextLine ( );
                 String[] lineArray = line.split ( "," ); // split the sentences using String split inbuilt method.
 
                 // adding the Exhibit object to the list of the exhibits.
-                exhibits.add(new Exhibit(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), Double.parseDouble(lineArray[3])));
-
-                // creating a list of all the exhibit Id's
-                exhibitIds.add ( lineArray[ 0 ]);
-
-                // creating a list of all the exhibits description
-                exhibitDescriptions.add (  lineArray[ 1 ]);
-
-                // creating a list of all the exhibit Years
-                exhibitYears.add (Integer.parseInt ( lineArray[ 2 ] )  );
-
-                // creating a list of all the exhibits Values
-                exhibitValues.add ( Double.parseDouble ( lineArray[ 3 ] ) );
+                museum.addExhibitToList(new Exhibit(lineArray[0], lineArray[1], Integer.parseInt(lineArray[2]), Double.parseDouble(lineArray[3])));
             }
-
+            //checking if the loaded csv include at least 1 row
+            if(museum.getExhibits().size()>0){
+                System.out.println("Csv data is loaded successfully!");
+            }else {
+                System.out.println("Something went wrong while loading the CSV, Please check your CSV file!");
+            }
             readCsv.close ( ); // closing the Scanner class
 
         } catch ( FileNotFoundException fileNotFoundException ) {
@@ -97,14 +80,57 @@ public class MuseumIO {
      * check entered museum is empty or not and notify the user
      * by an appropriate message.
      */
-    public void museumNameInput(){
+    public static void museumNameInput(){
         Scanner sc=new Scanner(System.in); // Created an object for scanner class.
         System.out.println("Please enter the museum name below and press enter! ");
-        museumName = sc.nextLine (); // take the input from the user as String
+        String museumName = sc.nextLine (); // take the input from the user as String
         // check if entered museum name is not empty and is not blank
         if(museumName.isBlank() && museumName.isEmpty()) {
             System.out.println("Entered museum name cannot be empty." + "\n" + "Please Try again!");
+        }else{
+            museum.setMuseumName(museumName);
+            if(!museum.getMuseumName().isEmpty()) System.out.println("Museum name : "+museum.getMuseumName()+ " was added successfully!");
         }
+    }
+
+    /**
+     * A static method which call a method from the Museum class
+     * to print the museum name and exhibits summary details
+     */
+    public static void printMuseumSummary(){
+        museum.getExhibitsSummary();
+    }
+
+    /**
+     * This is called to show the details about the statistic of the museum
+     * where we call 3 different methods to gather the data and print them in console.
+     */
+    public static void showStatistic(){
+
+        // Check if user has opted for option 2 or not for read csv
+        //if not show user a message
+        if(museum.getExhibits().size()>0){
+
+            System.out.println("The statistics on highest value, first exhibit acquired and average value of exhibits:");
+
+            Exhibit exhibit; // Initialized Museum ;
+
+            //Print statistics on exhibits, showing the full details of exhibit with the highest value
+            exhibit= museum.getHighestValueOfTheExhibit();
+            System.out.println("Highest value exhibit: "+exhibit.getDescription()+"("+exhibit.getExhibitId()+"),£" + exhibit.getValue());
+
+            //Print first exhibit acquired and average value of exhibits in the museum's collection
+            exhibit = museum.getFirstExhibitAcquired();
+            System.out.println("First exhibit acquired:"+ exhibit.getDescription() +" (acquired "+exhibit.getYearAcquired()+")");
+
+            //Print average value of all exhibits.
+            double average = museum.getAverageValueOfAllExhibits();
+            System.out.println ("Average value of exhibits: £"+ average ); // print the average
+        }else{
+            System.out.println("Kindly choose the option 2 to before reading the statistic!");
+        }
+
+
     }
 
     public static void main(String[] args) {
@@ -112,7 +138,7 @@ public class MuseumIO {
         MuseumIO museumIO =new MuseumIO(); // creates an object MuseumIO class.
 
         // Entry point : will check is @showMenuFlag is true, If yes, continue the loop.
-        while ( museumIO.showMenuFlag ){
+        while (showMenuFlag ){
             museumIO.showMenu ();
 
             try{
@@ -122,41 +148,19 @@ public class MuseumIO {
 
                 switch (menuOption) {
                     case 1:
-                        museumIO.museumNameInput ();
+                        museumNameInput ();
                         break;
                     case 2:
-                        museumIO.readCsv (); // call the readCsv method to parse the csv and read the details
+                        readCsv (); // call the readCsv method to parse the csv and read the details
                         break;
                     case 3:
-                        // Check if user has entered the museum name or not also
-                        // the option 2 for read csv is selected by user or not
-                        if(museumIO.museumName !=null && museumIO.exhibits.size()>0){
-                            // create an object of exhibit class with the parameter as list of exhibits
-                            Exhibit exhibit = new Exhibit ( museumIO.exhibits );
-                            // create an object of museum class by passing the parameter as museum name.s
-                            museum = new Museum(museumIO.museumName);
-                            // call the method get summary by passing the parameter museum name from museum class
-                            exhibit.getExhibitsSummary (museumIO.museumName);
-                        }else{
-                            System.out.println("Kindly choose the option 1 and 2 to before reading the summary!");
-                        }
-
+                        printMuseumSummary();
                         break;
                     case 4:
-                        // Check if user has opted for option 2 or not for read csv
-                        //if not show user a message
-                        if(museumIO.exhibitIds.size()>0 && museumIO.exhibitDescriptions.size()>0 &&museumIO.exhibitYears.size()>0
-                                && museumIO.exhibitValues.size()>0){
-                        // Create an object of Museum class with all the column details of each exhibit
-                            museum = new Museum(museumIO.exhibitIds, museumIO.exhibitDescriptions, museumIO.exhibitYears, museumIO.exhibitValues);
-                            museum.showStatistic ();
-                        }else{
-                            System.out.println("Kindly choose the 2 to before reading the statistic!");
-                        }
-
+                        showStatistic();
                         break;
                     case 5:
-                        museumIO.showMenuFlag =false; // will set the flag to false and exit the code.
+                        showMenuFlag =false; // will set the flag to false and exit the code.
                         System.out.println("Thank You");
                         break;
                 }
