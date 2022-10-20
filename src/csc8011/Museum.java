@@ -57,7 +57,7 @@ public class Museum {
      */
     public void getExhibitsSummary(){
 
-        if(!this.museumName.isEmpty() && exhibits.size()>0){
+        if(this.museumName !=null && !this.museumName.isEmpty() && exhibits.size()>0){
             System.out.println("Museum name : "+this.museumName); // call the getMuseumName method to get the name of the museum
         /*We will loop through each Exhibit object from the list and print the data
                 by calling the getter method from the Exhibit Class*/
@@ -67,7 +67,7 @@ public class Museum {
                         + exhibit.getYearAcquired ( ) + " Value: " + exhibit.getValue ( ) );
             }
         }else{
-            System.out.println("Please select the menu option 1 and 2, before running the summary option!");
+            System.out.println("WARNING : Please select the menu option 1 and 2, before running the summary option!");
         }
 
     }

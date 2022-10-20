@@ -66,13 +66,16 @@ public class MuseumIO {
      * This method behaviour is to show the list of the menu option available.
      */
     public static void showMenu(){
+        System.out.println ("----------------------------------------------------------------------------------------" );
         System.out.println ("Menu : " );
         System.out.println ("Please select any menu option from the below list" );
         System.out.println (getOption_1 () );
         System.out.println (getOption_2 () );
         System.out.println (getOption_3 () );
         System.out.println (getOption_4 () );
-        System.out.println (getOption_5 () ); // after option 5 point the cursor to the next line
+        System.out.println (getOption_5 () );
+        System.out.println ("----------------------------------------------------------------------------------------" );
+
     }
 
     /**
