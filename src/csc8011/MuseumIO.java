@@ -12,24 +12,24 @@ public class MuseumIO {
     /*
     * Below methods are the getter methods for all the variable of menu option's
     */
-    public String getOption_1 ( ) {
+    public static String getOption_1 ( ) {
         return "1 : Enter the name of the museum";
     }
 
-    public String getOption_2 ( ) {
+    public static String getOption_2 ( ) {
         return "2: Read in information on the exhibits from a .csv file in the current directory called exhibits.csv. " +
                 "See below for a specification of this file.";
     }
 
-    public String getOption_3 ( ) {
+    public static String getOption_3 ( ) {
         return "3: Print a summary of the museum name followed by a list of all exhibits, their value and the year acquired.";
     }
 
-    public String getOption_4 ( ) {
+    public static String getOption_4 ( ) {
         return "4: Print statistics on exhibits, showing the full details of exhibit with the highest value, " +
                 "first exhibit acquired and average value of exhibits in the museum's collection, to the console";
     }
-    public String getOption_5 ( ) {
+    public static String getOption_5 ( ) {
         return "5: Exit the menu options";
     }
 
@@ -65,7 +65,7 @@ public class MuseumIO {
     /**
      * This method behaviour is to show the list of the menu option available.
      */
-    public void showMenu(){
+    public static void showMenu(){
         System.out.println ("Menu : " );
         System.out.println ("Please select any menu option from the below list" );
         System.out.println (getOption_1 () );
@@ -129,17 +129,12 @@ public class MuseumIO {
         }else{
             System.out.println("Kindly choose the option 2 to before reading the statistic!");
         }
-
-
     }
 
     public static void main(String[] args) {
-
-        MuseumIO museumIO =new MuseumIO(); // creates an object MuseumIO class.
-
         // Entry point : will check is @showMenuFlag is true, If yes, continue the loop.
         while (showMenuFlag ){
-            museumIO.showMenu ();
+            showMenu ();
 
             try{
                 Scanner sc=new Scanner(System.in); // Created an object for scanner class.
@@ -151,7 +146,7 @@ public class MuseumIO {
                         museumNameInput ();
                         break;
                     case 2:
-                        readCsv (); // call the readCsv method to parse the csv and read the details
+                        readCsv ();
                         break;
                     case 3:
                         printMuseumSummary();
@@ -167,9 +162,6 @@ public class MuseumIO {
             }catch ( InputMismatchException inputMismatchException ){ // Handling the input mismatch exception
                 System.out.println ("Please Try again! by entering option as 1,2,3,4 or 5 to exit! " );
             }
-
         }
-
-
     }
 }
